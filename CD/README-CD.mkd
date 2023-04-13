@@ -1,0 +1,124 @@
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+
+# Haynes Ethan - Project 5 CD
+
+# Project Overview
+
+- Use Semantic Versioning to give more descriptive tags to project roll-outs using `git push` and Run the project on an EC2 instance as to host a server using AWS. Use Github actions with certain features on https://github.com/adnanh/webhook . 
+
+## Workflow 
+
+```mermaid
+graph TD;
+    A[WSL]--> |Docker Push image| B[Docker Desktop];
+    A[WSL]-->|WSL uses GIT push to main| C[Github Actions];
+    B[Docker Desktop]--> | Syncs Images |D[DockerHub];
+    C[Github Actions]--> |Syncs Info | D[DockerHub];
+
+```
+
+
+# Run Project Locally
+
+- How you installed docker + dependencies (WSL2, for example)
+
+> install docker dependencies with `sudo apt install apt-transport-https ca-certificates curl software-properties-common` 
+then use 
+`curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=$(dpkg --print-architecture ) ] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable "`
+then finally 
+` sudo apt install docker-ce`
+start docker with 
+`sudo systemctl start docker`
+`sudo systemctl enable docker`
+
+
+
+
+- How to build the container
+
+>`docker build -t <image-name>` 
+
+- How to run the container
+
+>`docker run -d --name <container-name> <image-name>`
+or
+`docker run -d -p 8080:8080 --name <container-name> <image-name>`
+
+- How to view the project running in the container (open a browser...go to ip and port...)
+
+> Access it in your web browser using the URL 
+`http://<EC2_PUBLIC_IP_OR_DNS>:80`
+
+### Dockerfile:
+--------------------------------------------
+`# syntax=docker/dockerfile:1`
+`FROM nginx:latest`
+`RUN apt-get update`
+`RUN apt-get install -y nginx-full`
+`COPY Website/index.html /usr/share/nginx/html`
+`COPY Website/headers.css /usr/share/nginx/html`
+`COPY Website/email.html /usr/share/nginx/html`
+`COPY Website/Assets/brand/bootstrap-logo.svg /usr/share/nginx/html/assets/brand`
+`COPY Website/Assets/brand/bootstrap-logo.svg /usr/share/nginx/html/assets/brand`
+`COPY Website/Assets/dist/css/bootstrap.min.css /usr/share/nginx/html/assets/css`
+`COPY Website/Assets/dist/css/bootstrap.min.css.map /usr/share/nginx/html/assets/css`
+`COPY Website/Assets/dist/css/bootstrap.rtl.min.css /usr/share/nginx/html/assets/css`
+`COPY Website/Assets/dist/css/bootstrap.rtl.min.css.map /usr/share/nginx/html/assets/css`
+`COPY Website/Assets/dist/js/bootstrap.bundle.min.js /usr/share/nginx/html/assets/js`
+`COPY Website/Assets/dist/js/bootstrap.bundle.min.js.map /usr/share/nginx/html/assets/js`
+`EXPOSE 80`
+`CMD ["nginx", "-g", "daemon off;"]`
+
+----------------------------------------------
+
+# DockerHub
+
+- Process to create public repo in DockerHub
+
+> Go to hub.docker.com > login and go to username > repositories > repository name
+
+- How to authenticate with DockerHub via CLI using Docker-hub credentials
+
+>In WSL: 
+`docker login --username="yourusername"`
+`Then it will prompt you to enter your password. it will then log you in.`
+
+- what credentials would you recommend providing?
+
+>Username and then an access token provided by Docker. You can get one of the following from the website under your login credentials at settings > Security > tokens.
+>Tokens are more secure than using passwords.
+
+# GitHub Actions
+
+- Configuring GitHub Secrets
+  - What secrets were set based on what info
+
+> Docker Username = DOCKER_USERNAME
+and 
+Docker Password = DOCKER_PASSWORD
+
+- Behavior of GitHub workflow
+  - what does it do and when
+
+> If docker push or git push is used, the dockerhub repo syncs the github repo with the dockerhub repo.
+
+  - what variables in workflow are custom to your project
+
+>Website/Index.html
+Website/style.css
+
+
+# Deployment
+
+>When you pull a Docker image onto a WSL2 (Windows Subsystem for Linux 2) console, the image is stored as a compressed archive in the Docker image cache, which is typically located at /var/lib/docker inside the WSL2 environment.
+
+- Description of container restart script
+- Setting up a webhook on the server
+  - How you created you own listener
+  - How you installed the [webhook on GitHub](https://github.com/adnanh/webhook)
+  - How to keep the webhook running if the instance is on
+- Description of Webhook task definition file
+- Steps to set up a notifier in GitHub or DockerHub
+
+
