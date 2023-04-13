@@ -108,17 +108,33 @@ Docker Password = DOCKER_PASSWORD
 >Website/Index.html
 Website/style.css
 
-
 # Deployment
 
 >When you pull a Docker image onto a WSL2 (Windows Subsystem for Linux 2) console, the image is stored as a compressed archive in the Docker image cache, which is typically located at /var/lib/docker inside the WSL2 environment.
 
 - Description of container restart script
+
 - Setting up a webhook on the server
+
   - How you created you own listener
+
   - How you installed the [webhook on GitHub](https://github.com/adnanh/webhook)
-  - How to keep the webhook running if the instance is on
+  
+>Install go 
+then 
+ go build github.com/adnanh/webhook
+then 
+sudo apt-get install webhook
+
+>hooks.json
+`[{`
+    `"id": "redeploy-webhook",`
+    `"execute-command": "/var/scripts/redeploy.sh",`
+    `"command-working-directory": "/var/webhook"`
+`}]`
+
 - Description of Webhook task definition file
+
 - Steps to set up a notifier in GitHub or DockerHub
 
 
