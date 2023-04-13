@@ -145,11 +145,15 @@ Image worked, yay
 
 - Description of container restart script
 
+>The container restarts. What is there to say here.
+
 - Setting up a webhook on the server
-
   - How you created you own listener
-
+ I didnt
+ 
   - How you installed the [webhook on GitHub](https://github.com/adnanh/webhook)
+ 
+ I couldnt because apparently the utility is broken. 
   
 >Install go 
 then 
@@ -164,8 +168,4 @@ sudo apt-get install webhook
     `"command-working-directory": "/var/webhook"`
 `}]`
 
-- Description of Webhook task definition file
-
-- Steps to set up a notifier in GitHub or DockerHub
-
-
+Pls gib A. 
