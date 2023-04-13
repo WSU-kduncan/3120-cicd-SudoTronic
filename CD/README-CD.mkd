@@ -110,6 +110,37 @@ Website/style.css
 
 # Deployment
 
+Semantic Tagging 
+![](https://github.com/WSU-kduncan/3120-cicd-SudoTronic/blob/main/CD/Images/create%20semantic%20tag.png?raw=true)
+
+login then push tag 
+![](https://github.com/WSU-kduncan/3120-cicd-SudoTronic/blob/main/CD/Images/Authenticate%20CICD%20Key%20then%20push%20a%20tag%20.png?raw=true)
+
+Tag Successfully pushed
+![](https://github.com/WSU-kduncan/3120-cicd-SudoTronic/blob/main/CD/Images/Semantic%20Tag%20Test%20Success.png?raw=true)
+
+New instance 
+![](https://github.com/WSU-kduncan/3120-cicd-SudoTronic/blob/main/CD/Images/DockerInstance.png?raw=true)
+
+Allow open ssh and port 80 http 
+![](https://github.com/WSU-kduncan/3120-cicd-SudoTronic/blob/main/CD/Images/Allow%20TCP%20port%2080%20for%20the%20default%20NGINX%20site.png?raw=true)
+
+Services Running 
+![](https://github.com/WSU-kduncan/3120-cicd-SudoTronic/blob/main/CD/Images/docker-nginx%20sucessfully%20installed.png?raw=true)
+
+login to docker 
+![](https://github.com/WSU-kduncan/3120-cicd-SudoTronic/blob/main/CD/Images/Login%20to%20docker%20on%20the%20EC2%20Instance.png?raw=true)
+
+pull docker image 
+![](https://github.com/WSU-kduncan/3120-cicd-SudoTronic/blob/main/CD/Images/Pull%20my%20container%20onto%20the%20ec2%20instance.png?raw=true)
+
+Run Image 
+![](https://github.com/WSU-kduncan/3120-cicd-SudoTronic/blob/main/CD/Images/Start%20imported%20image%20to%20container.png?raw=true)
+
+Image worked, yay
+![](https://github.com/WSU-kduncan/3120-cicd-SudoTronic/blob/main/CD/Images/Instance%20is%20running.png?raw=true)
+
+
 >When you pull a Docker image onto a WSL2 (Windows Subsystem for Linux 2) console, the image is stored as a compressed archive in the Docker image cache, which is typically located at /var/lib/docker inside the WSL2 environment.
 
 - Description of container restart script
